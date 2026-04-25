@@ -78,12 +78,13 @@
   header.site-nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     padding-block: 1.1rem;
     background: rgba(8, 10, 15, 0.55);
     backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    isolation: isolate;
   }
 
   .nav-inner {
@@ -94,7 +95,7 @@
 
   .nav-logo {
     font-family: var(--font-display);
-    font-size: 26px;
+    font-size: 35px;
     letter-spacing: 0.08em;
     color: var(--text);
     text-decoration: none;
@@ -114,7 +115,7 @@
 
   .nav-links a {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-soft);
@@ -309,35 +310,86 @@
     z-index: 2;
   }
 
-  /* ===================== BANNERS (lift + borda ciano) ===================== */
+  /* ===================== BANNERS (lift + borda ciano) =====================
+     Layout masonry: grid de 6 colunas que cria padrão "tijolo".
+     - .banner.short  (1266×600  ≈ 2.11:1)  → ocupa 2 colunas (de 6)
+     - .banner.wide   (1600×375  ≈ 4.27:1)  → ocupa 3 colunas (de 6)
+     Combine 3 short numa linha, ou 2 wide numa linha, ou alternâncias.
+  ==================================================================== */
   .grid-banners {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: 20px;
   }
-  .grid-banners .card { aspect-ratio: 16/7; }
 
-  .grid-banners .card:hover {
+  .banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.4s ease,
+                transform 0.5s cubic-bezier(.2, .9, .3, 1.2),
+                box-shadow 0.5s ease;
+  }
+
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .banner.short {
+    grid-column: span 2;
+    aspect-ratio: 1266 / 600;
+  }
+
+  .banner.wide {
+    grid-column: span 3;
+    aspect-ratio: 1600 / 375;
+  }
+
+  .banner:hover {
     transform: translateY(-4px);
     border-color: var(--accent);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 
-  /* ===================== WIDGETS (lift + glow + scale) ===================== */
+  /* ===================== WIDGETS (sem fundo, preserva transparência) =====================
+     Widget é PNG transparente, então não pode ter fundo de card.
+     Aspect ratio 1552×873 (≈1.78:1) preservado.
+  ==================================================================== */
   .grid-widgets {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 32px;
   }
-  .grid-widgets .card { aspect-ratio: 4/3; }
 
-  .grid-widgets .card:hover {
+  .widget {
+    aspect-ratio: 1552 / 873;
+    overflow: visible;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(.2, .9, .3, 1.2),
+                filter 0.5s ease;
+    background: transparent;
+    border: none;
+  }
+
+  .widget img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
+    transition: filter 0.5s ease;
+  }
+
+  .widget:hover {
     transform: translateY(-6px) scale(1.02);
-    border-color: rgba(0, 212, 255, 0.4);
-    box-shadow:
-      0 12px 32px rgba(0, 0, 0, 0.45),
-      0 0 50px rgba(0, 212, 255, 0.1);
-    z-index: 2;
+  }
+
+  .widget:hover img {
+    filter: drop-shadow(0 12px 36px rgba(0, 212, 255, 0.25));
   }
 
   /* ===================== GAMIFICAÇÃO (3D) ===================== */
@@ -826,7 +878,10 @@
   @media (max-width: 900px) {
     .container { padding-inline: 1.25rem; }
 
-    header.site-nav { padding-block: 0.875rem; }
+    header.site-nav {
+      padding-block: 0.875rem;
+      background: rgba(8, 10, 15, 0.95);
+    }
 
     .nav-links {
       position: fixed;
@@ -840,11 +895,19 @@
       border-top: 1px solid var(--border);
       padding: 0;
       transform: translateY(-110%);
-      transition: transform 0.3s;
+      transition: transform 0.3s ease, opacity 0.3s ease;
       z-index: 99;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
     }
 
-    .nav-links.open { transform: translateY(0); }
+    .nav-links.open {
+      transform: translateY(0);
+      pointer-events: auto;
+      opacity: 1;
+      visibility: visible;
+    }
 
     .nav-links li { border-bottom: 1px solid var(--border); }
 
@@ -885,6 +948,8 @@
     #contato { padding: 80px 24px; }
 
     .grid-banners { grid-template-columns: 1fr; }
+    .banner.short, .banner.wide { grid-column: span 1; }
+    .grid-widgets { grid-template-columns: 1fr; gap: 24px; }
     .grid-trafego .card.wide { grid-column: span 1; }
 
     footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
@@ -1048,23 +1113,75 @@
     </div>
 
     <div class="grid-banners">
-      <div class="card">
+      <!--
+        DISTRIBUIÇÃO MASONRY (grid de 6 colunas):
+        - <div class="banner short"> ocupa 2 colunas → 1266×600
+        - <div class="banner wide">  ocupa 3 colunas → 1600×375
+
+        Sugestão de layout pra padrão "tijolo":
+        Linha 1: short + short + short (3 banners 1266×600)
+        Linha 2: wide + wide          (2 banners 1600×375)
+        Linha 3: short + wide → ajusta conforme tem
+      -->
+      <div class="banner short">
         <img src="assets/banners/1.webp" alt="">
       </div>
-      <div class="card">
+      <div class="banner short">
         <img src="assets/banners/2.webp" alt="">
       </div>
-      <div class="card">
+      <div class="banner short">
         <img src="assets/banners/3.webp" alt="">
       </div>
-      <div class="card">
-        <div class="card-placeholder">Banner</div>
+      <div class="banner wide">
+        <img src="assets/banners/4.webp" alt="">
       </div>
-      <div class="card">
-        <div class="card-placeholder">Banner</div>
+      <div class="banner wide">
+        <img src="assets/banners/5.webp" alt="">
       </div>
-      <div class="card">
-        <div class="card-placeholder">Banner</div>
+      <div class="banner short">
+        <img src="assets/banners/6.webp" alt="">
+      </div>
+      <div class="banner short">
+        <img src="assets/banners/7.webp" alt="">
+      </div>
+      <div class="banner short">
+        <img src="assets/banners/8.webp" alt="">
+      </div>
+      <div class="banner wide">
+        <img src="assets/banners/9.webp" alt="">
+      </div>
+      <div class="banner wide">
+        <img src="assets/banners/10.webp" alt="">
+      </div>
+      <div class="banner short">
+        <img src="assets/banners/11.webp" alt="">
+      </div>
+      <div class="banner short">
+        <img src="assets/banners/12.webp" alt="">
+      </div>
+      <div class="banner short">
+        <img src="assets/banners/13.webp" alt="">
+      </div>
+      <div class="banner wide">
+        <img src="assets/banners/14.webp" alt="">
+      </div>
+      <div class="banner wide">
+        <img src="assets/banners/15.webp" alt="">
+      </div>
+      <div class="banner short">
+        <img src="assets/banners/16.webp" alt="">
+      </div>
+      <div class="banner short">
+        <img src="assets/banners/17.webp" alt="">
+      </div>
+      <div class="banner short">
+        <img src="assets/banners/18.webp" alt="">
+      </div>
+      <div class="banner wide">
+        <img src="assets/banners/19.webp" alt="">
+      </div>
+      <div class="banner wide">
+        <img src="assets/banners/20.webp" alt="">
       </div>
     </div>
   </section>
@@ -1079,17 +1196,32 @@
     </div>
 
     <div class="grid-widgets">
-      <div class="card">
-        <div class="card-placeholder">Widget</div>
+      <div class="widget">
+        <img src="assets/widgets/1.webp" alt="">
       </div>
-      <div class="card">
-        <div class="card-placeholder">Widget</div>
+      <div class="widget">
+        <img src="assets/widgets/2.webp" alt="">
       </div>
-      <div class="card">
-        <div class="card-placeholder">Widget</div>
+      <div class="widget">
+        <img src="assets/widgets/3.webp" alt="">
       </div>
-      <div class="card">
-        <div class="card-placeholder">Widget</div>
+      <div class="widget">
+        <img src="assets/widgets/4.webp" alt="">
+      </div>
+      <div class="widget">
+        <img src="assets/widgets/5.webp" alt="">
+      </div>
+      <div class="widget">
+        <img src="assets/widgets/6.webp" alt="">
+      </div>
+      <div class="widget">
+        <img src="assets/widgets/7.webp" alt="">
+      </div>
+      <div class="widget">
+        <img src="assets/widgets/8.webp" alt="">
+      </div>
+      <div class="widget">
+        <img src="assets/widgets/9.webp" alt="">
       </div>
     </div>
   </section>
