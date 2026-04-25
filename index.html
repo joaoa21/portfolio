@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>João Alberto — Portfólio</title>
+<meta name="description" content="Portfólio de João Alberto — Web Designer focado em iGaming. Gamificação, email marketing, banners, pop-ups e widgets.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:        #080a0f;
+    --surface:   #0d1017;
+    --surface-2: #14181f;
+    --surface-3: #1a1f28;
+    --border:    rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.16);
+    --text:      #e8e4dc;
+    --text-soft: rgba(232, 228, 220, 0.65);
+    --muted:     #5a5f6e;
+    --accent:    #00d4ff;
+    --accent-deep: #00a9cc;
+    --accent2:   #ff6b35;
+
+    --font-display: "Bebas Neue", "Impact", sans-serif;
+    --font-sans:    "Outfit", "Inter", -apple-system, "Segoe UI", sans-serif;
+    --font-mono:    "DM Mono", "JetBrains Mono", "Courier New", monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ====================================================================
+     BACKGROUND EFFECTS (igual home de links)
+  ==================================================================== */
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 180px;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: -10%; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 20%, rgba(0,212,255,.10) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 80%, rgba(255,107,53,.06) 0%, transparent 65%);
+    animation: blobDrift 90s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes blobDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(4%, -3%) scale(1.05); }
+  }
+
+  /* ====================================================================
+     LAYOUT
+  ==================================================================== */
+  .wrap { position: relative; z-index: 1; }
+  .container {
+    max-width: 86rem;
+    margin: 0 auto;
+    padding-inline: 2rem;
+  }
+
+  /* ====================================================================
+     NAVBAR (glass)
+  ==================================================================== */
+  header.site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding-block: 1.1rem;
+    background: rgba(8, 10, 15, 0.55);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 26px;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.3s ease;
+    margin-right: auto;     /* empurra os links pra direita */
+  }
+
+  .nav-logo:hover { color: var(--accent); }
+  .nav-logo .accent { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.4s ease;
+    position: relative;
+    padding-block: 4px;
+  }
+
+  /* linha animada do hover (estilo MS) */
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+  }
+
+  .nav-links a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .nav-mobile-toggle { display: none; }
+
+  /* ====================================================================
+     HERO
+  ==================================================================== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 160px 48px 80px;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+
+  .hero-eyebrow::before {
+    content: ''; width: 40px; height: 1px; background: var(--accent);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(64px, 11vw, 150px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-title .outline {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    color: transparent;
+  }
+
+  .hero-title .accent { color: var(--accent); }
+
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-top: 50px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+    flex-wrap: wrap;
+  }
+
+  .hero-bio {
+    max-width: 460px;
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .hero-bio strong { color: var(--text); font-weight: 400; }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 44px;
+    color: var(--text);
+    line-height: 1;
+    display: block;
+    letter-spacing: 0.02em;
+  }
+
+  .stat-num .accent { color: var(--accent); }
+
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    display: block;
+  }
+
+  .scroll-ind {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    opacity: 0;
+    animation: fadeUp 1s 1.3s forwards;
+    text-transform: uppercase;
+  }
+
+  .scroll-track {
+    width: 1px; height: 60px;
+    background: var(--border);
+    overflow: hidden;
+  }
+
+  .scroll-fill {
+    width: 100%; height: 50%;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollDown 1.8s 1.5s infinite;
+  }
+
+  @keyframes scrollDown {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(200%); }
+  }
+
+  /* ====================================================================
+     CATEGORY HEADER (iGAMING)
+  ==================================================================== */
+  .category {
+    padding: 160px 0 40px;
+    text-align: center;
+    position: relative;
+  }
+
+  .category-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .category-label::before, .category-label::after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  .category-title {
+    font-family: var(--font-display);
+    font-size: clamp(72px, 14vw, 180px);
+    line-height: 0.92;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+
+  .category-title .accent { color: var(--accent); }
+
+  .category-desc {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ====================================================================
+     SECTION (subsection dentro de iGAMING)
+  ==================================================================== */
+  section.work-section {
+    padding: 60px 0;
+    max-width: 86rem;
+    margin: 0 auto;
+    padding-inline: 2rem;
+  }
+
+  .s-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .s-head-left {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .s-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  .s-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 56px);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .s-title .accent { color: var(--accent); }
+
+  .s-desc {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 380px;
+    text-align: right;
+  }
+
+  /* ====================================================================
+     CARDS BASE
+  ==================================================================== */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.4s, transform 0.4s;
+  }
+
+  .card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+
+  .card-placeholder {
+    background:
+      linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .card-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(45deg, transparent 48%, rgba(0,212,255,.04) 49%, rgba(0,212,255,.04) 51%, transparent 52%);
+    background-size: 18px 18px;
+    pointer-events: none;
+  }
+
+  /* ====================================================================
+     GRID — TRÁFEGO PAGO
+     (criativos quadrados/retangulares mistos, estilo masonry)
+  ==================================================================== */
+  .grid-trafego {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  .grid-trafego .card {
+    aspect-ratio: 1;
+  }
+
+  .grid-trafego .card.tall { aspect-ratio: 4/5; }
+  .grid-trafego .card.wide { aspect-ratio: 16/9; grid-column: span 2; }
+
+  /* ====================================================================
+     GRID — POP-UPS
+  ==================================================================== */
+  .grid-popups {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .grid-popups .card {
+    aspect-ratio: 4/5;
+  }
+
+  /* ====================================================================
+     GRID — BANNERS
+     (horizontais — proporção banner web)
+  ==================================================================== */
+  .grid-banners {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 20px;
+  }
+
+  .grid-banners .card {
+    aspect-ratio: 16/7;
+  }
+
+  /* ====================================================================
+     GRID — WIDGETS
+  ==================================================================== */
+  .grid-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .grid-widgets .card {
+    aspect-ratio: 4/3;
+  }
+
+  /* ====================================================================
+     GAMIFICAÇÃO — cards 3D
+  ==================================================================== */
+  .grid-gamif {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 32px;
+    padding: 20px 0;
+    perspective: 1200px;
+  }
+
+  .gamif-card {
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(.2, .9, .3, 1.4),
+                box-shadow 0.6s ease,
+                border-color 0.4s;
+    cursor: pointer;
+    will-change: transform;
+  }
+
+  .gamif-card:hover {
+    transform: rotateY(-8deg) rotateX(4deg) translateZ(20px);
+    box-shadow:
+      -20px 30px 50px rgba(0, 0, 0, 0.5),
+      0 0 60px rgba(0, 212, 255, 0.12);
+    border-color: rgba(0, 212, 255, 0.4);
+  }
+
+  .gamif-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, transparent 50%, rgba(255, 107, 53, 0.04) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .gamif-card .card-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  .gamif-card-label {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+  }
+
+  .gamif-card-num {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  /* ====================================================================
+     EMAILS — miniaturas via iframe
+  ==================================================================== */
+  .grid-emails {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+  }
+
+  .email-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: border-color 0.4s, transform 0.4s;
+    position: relative;
+  }
+
+  .email-card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    transform: translateY(-4px);
+  }
+
+  .email-frame-wrap {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    position: relative;
+    background: white;
+  }
+
+  /* iframe escalado pra parecer miniatura */
+  .email-frame {
+    width: 370%;
+    height: 370%;
+    border: 0;
+    transform: scale(0.2703);
+    transform-origin: top left;
+    pointer-events: none;
+  }
+
+  .email-meta {
+    padding: 16px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .email-name {
+    font-size: 13px;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .email-actions {
+    display: flex;
+    gap: 14px;
+  }
+
+  .email-action {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .email-action:hover { color: var(--accent); }
+
+  /* ====================================================================
+     FERRAMENTAS
+  ==================================================================== */
+  #ferramentas .grid-tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px;
+    transition: border-color 0.4s, transform 0.4s;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,212,255,.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .tool-card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    transform: translateY(-4px);
+  }
+
+  .tool-card:hover::before { opacity: 1; }
+
+  .tool-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  .tool-name {
+    font-family: var(--font-display);
+    font-size: 32px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .tool-kind {
+    font-size: 13px;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .tool-desc {
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .tool-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .tool-stack {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .tool-arrow {
+    font-size: 14px;
+    color: var(--muted);
+    transition: color 0.3s, transform 0.3s;
+  }
+
+  .tool-card:hover .tool-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  /* ====================================================================
+     SOBRE
+  ==================================================================== */
+  #sobre {
+    padding: 100px 0;
+    max-width: 86rem;
+    margin: 0 auto;
+    padding-inline: 2rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-soft);
+  }
+
+  .about-text p { margin-bottom: 18px; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { color: var(--text); font-weight: 400; }
+  .about-text .hl { color: var(--accent); }
+
+  .about-skills {
+    border: 1px solid var(--border);
+    background: rgba(13, 16, 23, 0.5);
+    padding: 32px;
+    backdrop-filter: blur(10px);
+  }
+
+  .about-skills-title {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+
+  .skill-row:last-child { border-bottom: none; }
+
+  .skill-cat {
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .skill-items {
+    color: var(--text-soft);
+    text-align: right;
+    max-width: 60%;
+  }
+
+  /* ====================================================================
+     CONTATO
+  ==================================================================== */
+  #contato {
+    padding: 120px 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  #contato::before {
+    content: 'CONTATO';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-size: clamp(120px, 22vw, 280px);
+    color: rgba(255, 255, 255, 0.02);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  .contact-inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .contact-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 96px);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .contact-title .accent { color: var(--accent); }
+
+  .contact-sub {
+    font-size: 15px;
+    color: var(--text-soft);
+    line-height: 1.6;
+    max-width: 440px;
+    margin: 0 auto 40px;
+  }
+
+  .contact-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 44px;
+    background: var(--accent);
+    color: var(--bg);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border: 1px solid var(--accent);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-cta:hover {
+    background: transparent;
+    color: var(--accent);
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .contact-secondary {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .contact-secondary a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-secondary a:hover { color: var(--accent); }
+
+  /* ====================================================================
+     FOOTER
+  ==================================================================== */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 2rem;
+    max-width: 86rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer .accent { color: var(--accent); }
+
+  /* ====================================================================
+     SCROLL REVEAL
+  ==================================================================== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.on {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ====================================================================
+     ANIMATIONS
+  ==================================================================== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ====================================================================
+     MOBILE
+  ==================================================================== */
+  @media (max-width: 900px) {
+    .container { padding-inline: 1.25rem; }
+
+    header.site-nav { padding-block: 0.875rem; }
+
+    .nav-links {
+      position: fixed;
+      top: 56px;
+      left: 0; right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(8, 10, 15, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      padding: 0;
+      transform: translateY(-110%);
+      transition: transform 0.3s;
+    }
+
+    .nav-links.open { transform: translateY(0); }
+
+    .nav-links li {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 18px 20px;
+    }
+
+    .nav-links a::after { display: none; }
+
+    .nav-mobile-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .nav-mobile-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text);
+      transition: 0.3s;
+    }
+
+    .nav-mobile-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-mobile-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-mobile-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .category { padding: 120px 24px 30px; }
+
+    section.work-section { padding: 40px 24px; }
+
+    .s-head { flex-direction: column; align-items: flex-start; }
+    .s-desc { text-align: left; }
+
+    #sobre { padding: 60px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+
+    #contato { padding: 80px 24px; }
+
+    .grid-banners { grid-template-columns: 1fr; }
+    .grid-trafego .card.wide { grid-column: span 1; }
+
+    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <!-- ==================================================================
+       NAVBAR (glass)
+  ================================================================== -->
+  <header class="site-nav" id="nav">
+    <div class="nav-inner container">
+      <a class="nav-logo" href="../" aria-label="Voltar para home">
+        JA<span class="accent">.</span>
+      </a>
+
+      <button class="nav-mobile-toggle" id="navToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#trabalhos">Trabalhos</a></li>
+        <li><a href="#ferramentas">Ferramentas</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ==================================================================
+       CATEGORIA: iGAMING
+  ================================================================== -->
+  <header class="category" id="trabalhos">
+    <div class="category-label">Trabalhos selecionados</div>
+    <h2 class="category-title">iGAMING<span class="accent">.</span></h2>
+    <p class="category-desc">
+      Trabalho realizado no setor de CRM de uma casa de apostas esportivas, cobrindo toda a experiência visual do jogador.
+    </p>
+  </header>
+
+  <!-- ==================================================================
+       SUBSEÇÃO: TRÁFEGO PAGO
+  ================================================================== -->
+  <section class="work-section reveal" id="trafego">
+    <div class="s-head">
+      <div class="s-head-left">
+        <span class="s-num">// 01</span>
+        <h3 class="s-title">Tráfego Pago<span class="accent">.</span></h3>
+      </div>
+      <p class="s-desc">
+        Criativos para campanhas de aquisição em Meta Ads e Google Ads. Hierarquia visual extrema, copy curta, foco em conversão.
+      </p>
+    </div>
+
+    <div class="grid-trafego">
+      <!-- ⬇️ SUBSTITUA pelos seus creativos. Mantém aspect-ratio quadrado por padrão. -->
+      <!-- Pra um criativo "tall" (formato story 4:5): adiciona class="tall" -->
+      <!-- Pra um criativo "wide" (formato banner 16:9): adiciona class="wide" -->
+      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
+      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
+      <div class="card tall"><div class="card-placeholder">Story<br>1080x1350</div></div>
+      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
+      <div class="card wide"><div class="card-placeholder">Banner<br>1600x900</div></div>
+      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
+      <div class="card tall"><div class="card-placeholder">Story<br>1080x1350</div></div>
+      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
+      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
+      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SUBSEÇÃO: POP-UPS
+  ================================================================== -->
+  <section class="work-section reveal" id="popups">
+    <div class="s-head">
+      <div class="s-head-left">
+        <span class="s-num">// 02</span>
+        <h3 class="s-title">Pop-ups<span class="accent">.</span></h3>
+      </div>
+      <p class="s-desc">
+        Pop-ups de boas-vindas, cadastro, promoções e reativação. Foco em mensagem clara e CTA único.
+      </p>
+    </div>
+
+    <div class="grid-popups">
+      <!-- ⬇️ Pop-ups geralmente são 4:5 (retrato). Substitua os placeholders. -->
+      <div class="card"><div class="card-placeholder">Pop-up<br>800x1000</div></div>
+      <div class="card"><div class="card-placeholder">Pop-up</div></div>
+      <div class="card"><div class="card-placeholder">Pop-up</div></div>
+      <div class="card"><div class="card-placeholder">Pop-up</div></div>
+      <div class="card"><div class="card-placeholder">Pop-up</div></div>
+      <div class="card"><div class="card-placeholder">Pop-up</div></div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SUBSEÇÃO: BANNERS
+  ================================================================== -->
+  <section class="work-section reveal" id="banners">
+    <div class="s-head">
+      <div class="s-head-left">
+        <span class="s-num">// 03</span>
+        <h3 class="s-title">Banners<span class="accent">.</span></h3>
+      </div>
+      <p class="s-desc">
+        Banners de carrossel da home, banners promocionais, sazonais e de torneios.
+      </p>
+    </div>
+
+    <div class="grid-banners">
+      <!-- ⬇️ Proporção 16:7 (formato banner web). Substitua os placeholders. -->
+      <div class="card"><div class="card-placeholder">Banner<br>1920x800</div></div>
+      <div class="card"><div class="card-placeholder">Banner</div></div>
+      <div class="card"><div class="card-placeholder">Banner</div></div>
+      <div class="card"><div class="card-placeholder">Banner</div></div>
+      <div class="card"><div class="card-placeholder">Banner</div></div>
+      <div class="card"><div class="card-placeholder">Banner</div></div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SUBSEÇÃO: WIDGETS
+  ================================================================== -->
+  <section class="work-section reveal" id="widgets">
+    <div class="s-head">
+      <div class="s-head-left">
+        <span class="s-num">// 04</span>
+        <h3 class="s-title">Widgets<span class="accent">.</span></h3>
+      </div>
+      <p class="s-desc">
+        Componentes de UI integrados ao site da casa: cards de promoção, múltiplas populares, destaques.
+      </p>
+    </div>
+
+    <div class="grid-widgets">
+      <!-- ⬇️ Proporção 4:3. Substitua os placeholders. -->
+      <div class="card"><div class="card-placeholder">Widget</div></div>
+      <div class="card"><div class="card-placeholder">Widget</div></div>
+      <div class="card"><div class="card-placeholder">Widget</div></div>
+      <div class="card"><div class="card-placeholder">Widget</div></div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SUBSEÇÃO: GAMIFICAÇÃO (cards 3D)
+  ================================================================== -->
+  <section class="work-section reveal" id="gamificacao">
+    <div class="s-head">
+      <div class="s-head-left">
+        <span class="s-num">// 05</span>
+        <h3 class="s-title">Gamificação<span class="accent">.</span></h3>
+      </div>
+      <p class="s-desc">
+        Identidade visual de torneios, missões, loja de pontos, roleta, quiz e bolão. 20+ torneios desenhados.
+      </p>
+    </div>
+
+    <div class="grid-gamif">
+      <!-- ⬇️ Cards 3D pros torneios. Substitua placeholder por imagem do torneio. -->
+      <div class="gamif-card">
+        <span class="gamif-card-num">01</span>
+        <div class="card-placeholder">Torneio</div>
+        <span class="gamif-card-label">Torneio · Nome</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">02</span>
+        <div class="card-placeholder">Torneio</div>
+        <span class="gamif-card-label">Torneio · Nome</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">03</span>
+        <div class="card-placeholder">Torneio</div>
+        <span class="gamif-card-label">Torneio · Nome</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">04</span>
+        <div class="card-placeholder">Torneio</div>
+        <span class="gamif-card-label">Torneio · Nome</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">05</span>
+        <div class="card-placeholder">Torneio</div>
+        <span class="gamif-card-label">Torneio · Nome</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">06</span>
+        <div class="card-placeholder">Torneio</div>
+        <span class="gamif-card-label">Torneio · Nome</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SUBSEÇÃO: EMAIL MARKETING (iframes)
+  ================================================================== -->
+  <section class="work-section reveal" id="emails">
+    <div class="s-head">
+      <div class="s-head-left">
+        <span class="s-num">// 06</span>
+        <h3 class="s-title">Email Marketing<span class="accent">.</span></h3>
+      </div>
+      <p class="s-desc">
+        Emails em HTML/CSS table-based com compatibilidade cross-client (Gmail, Outlook/VML). Renderizados ao vivo abaixo.
+      </p>
+    </div>
+
+    <div class="grid-emails">
+
+      <!-- ⬇️ Cada email vai num arquivo HTML em ./emails/email-XX.html
+           Quando você tiver os emails, troca o src dos iframes abaixo
+           e o link "Ver código" pro caminho correto -->
+
+      <article class="email-card">
+        <div class="email-frame-wrap">
+          <iframe class="email-frame" src="./emails/email-01.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+        </div>
+        <div class="email-meta">
+          <span class="email-name">Email 01</span>
+          <div class="email-actions">
+          </div>
+        </div>
+      </article>
+
+      <article class="email-card">
+        <div class="email-frame-wrap">
+          <iframe class="email-frame" src="./emails/email-02.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+        </div>
+        <div class="email-meta">
+          <span class="email-name">Email 02</span>
+          <div class="email-actions">
+          </div>
+        </div>
+      </article>
+
+      <article class="email-card">
+        <div class="email-frame-wrap">
+          <iframe class="email-frame" src="./emails/email-03.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+        </div>
+        <div class="email-meta">
+          <span class="email-name">Email 03</span>
+          <div class="email-actions">
+          </div>
+        </div>
+      </article>
+
+      <article class="email-card">
+        <div class="email-frame-wrap">
+          <iframe class="email-frame" src="./emails/email-04.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+        </div>
+        <div class="email-meta">
+          <span class="email-name">Email 04</span>
+          <div class="email-actions">
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       FERRAMENTAS
+  ================================================================== -->
+  <section class="work-section reveal" id="ferramentas">
+    <div class="s-head">
+      <div class="s-head-left">
+        <span class="s-num">// 07</span>
+        <h3 class="s-title">Ferramentas<span class="accent">.</span></h3>
+      </div>
+      <p class="s-desc">
+        Aplicações que construí pra resolver gargalos do meu próprio fluxo de trabalho.
+      </p>
+    </div>
+
+    <div class="grid-tools">
+
+      <a class="tool-card" href="https://github.com/joaoa21" target="_blank" rel="noopener">
+        <span class="tool-num">// 01</span>
+        <div>
+          <h4 class="tool-name">KOMPRES</h4>
+          <span class="tool-kind">Compressão de imagens no browser</span>
+        </div>
+        <p class="tool-desc">
+          Ferramenta interna para acelerar o fluxo diário de conversão de PNG para WebP. Drag-and-drop, saída em WebP/PNG/JPEG, download em lote via ZIP.
+        </p>
+        <div class="tool-foot">
+          <span class="tool-stack">HTML · CSS · JS</span>
+          <span class="tool-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="tool-card" href="https://github.com/joaoa21" target="_blank" rel="noopener">
+        <span class="tool-num">// 02</span>
+        <div>
+          <h4 class="tool-name">EMAIL GENERATOR</h4>
+          <span class="tool-kind">Gerador de HTML de email marketing</span>
+        </div>
+        <p class="tool-desc">
+          Automatiza criação de emails HTML cross-client (Gmail, Outlook/VML). Auto-save, cópia direta para clipboard via ClipboardItem API e preview em tempo real.
+        </p>
+        <div class="tool-foot">
+          <span class="tool-stack">HTML · CSS · JS</span>
+          <span class="tool-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="tool-card" href="https://github.com/joaoa21" target="_blank" rel="noopener">
+        <span class="tool-num">// 03</span>
+        <div>
+          <h4 class="tool-name">WIDGET MÚLTIPLAS</h4>
+          <span class="tool-kind">Componente de parlay para casa de apostas</span>
+        </div>
+        <p class="tool-desc">
+          Widget de múltiplas (parlay) integrado ao site, com cards de jogos, deep links e styling alinhado à identidade da marca.
+        </p>
+        <div class="tool-foot">
+          <span class="tool-stack">HTML · CSS · JS</span>
+          <span class="tool-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       SOBRE
+  ================================================================== -->
+  <section id="sobre">
+    <div class="s-head reveal">
+      <div class="s-head-left">
+        <span class="s-num">// 08</span>
+        <h3 class="s-title">Sobre<span class="accent">.</span></h3>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <p class="about-text reveal">
+        <strong>Web Designer focado em iGaming</strong>, baseado em Recife. Atuo no setor de CRM, onde desenho toda a experiência visual do jogador — da home do site à gamificação, passando por emails, pop-ups, inbox e banners.
+        <br><br>
+        Conecto design com ações de <span class="hl">retenção, engajamento e ciclo de vida do jogador</span>. Codifico emails em HTML/CSS com compatibilidade cross-client e uso IA generativa aplicada ao nicho de apostas no dia a dia.
+        <br><br>
+        Antes da iGaming, vim de agências de publicidade, onde liderei equipes criativas em projetos de branding, identidade visual e campanhas para clientes de diferentes segmentos.
+      </p>
+
+      <div class="about-skills reveal">
+        <div class="about-skills-title">// Stack &amp; Habilidades</div>
+        <div class="skill-row">
+          <span class="skill-cat">Design</span>
+          <span class="skill-items">Photoshop, Illustrator, Figma</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">iGaming / CRM</span>
+          <span class="skill-items">Smartico, Email Marketing, Gamificação</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Código</span>
+          <span class="skill-items">HTML5, CSS3, JavaScript</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">IA Generativa</span>
+          <span class="skill-items">Composição aplicada a bets</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Liderança</span>
+          <span class="skill-items">Ex-Diretor de Criação</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       CONTATO
+  ================================================================== -->
+  <section id="contato">
+    <div class="contact-inner">
+      <div class="contact-eyebrow reveal">// Disponível pra novos projetos</div>
+      <h2 class="contact-title reveal">VAMOS<br>CONVERSAR<span class="accent">.</span></h2>
+      <p class="contact-sub reveal">
+        Tem um projeto em mente, vaga aberta ou só quer trocar uma ideia? Manda mensagem.
+      </p>
+
+      <a class="contact-cta reveal" href="https://wa.me/5581988780144?text=Oi%20Jo%C3%A3o!" target="_blank" rel="noopener">
+        <span>Chamar no WhatsApp</span>
+        <span>→</span>
+      </a>
+
+      <div class="contact-secondary reveal">
+        <a href="mailto:joaoams6@gmail.com">joaoams6@gmail.com</a>
+        <a href="https://linkedin.com/in/joaoa210" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/joaoa21" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================================
+       FOOTER
+  ================================================================== -->
+  <footer>
+    <p>© 2026 João Alberto<span class="accent">.</span></p>
+    <p>Recife, PE</p>
+  </footer>
+
+</div>
+
+<!-- ==================================================================
+     SCRIPT
+================================================================== -->
+<script>
+  // mobile menu toggle
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    links.classList.toggle('open');
+  });
+
+  // fechar menu mobile ao clicar em link
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      links.classList.remove('open');
+    });
+  });
+
+  // scroll reveal via IntersectionObserver
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('on');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  reveals.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
