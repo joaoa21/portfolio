@@ -43,10 +43,6 @@
     position: relative;
   }
 
-  /* ====================================================================
-     BACKGROUND EFFECTS (igual home de links)
-  ==================================================================== */
-
   body::before {
     content: '';
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -70,9 +66,7 @@
     50%      { transform: translate(4%, -3%) scale(1.05); }
   }
 
-  /* ====================================================================
-     LAYOUT
-  ==================================================================== */
+  /* ===================== LAYOUT ===================== */
   .wrap { position: relative; z-index: 1; }
   .container {
     max-width: 86rem;
@@ -80,9 +74,7 @@
     padding-inline: 2rem;
   }
 
-  /* ====================================================================
-     NAVBAR (glass)
-  ==================================================================== */
+  /* ===================== NAVBAR (glass) ===================== */
   header.site-nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -108,10 +100,9 @@
     text-decoration: none;
     line-height: 1;
     transition: color 0.3s ease;
-    margin-right: auto;     /* empurra os links pra direita */
+    margin-right: auto;
   }
 
-  .nav-logo:hover { color: var(--accent); }
   .nav-logo .accent { color: var(--accent); }
 
   .nav-links {
@@ -133,7 +124,6 @@
     padding-block: 4px;
   }
 
-  /* linha animada do hover (estilo MS) */
   .nav-links a::after {
     content: "";
     position: absolute;
@@ -146,170 +136,16 @@
     transition: transform 0.3s ease;
   }
 
-  .nav-links a:hover {
-    color: var(--text);
-  }
-
-  .nav-links a:hover::after {
-    transform: scaleX(1);
-  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { transform: scaleX(1); }
 
   .nav-mobile-toggle { display: none; }
 
-  /* ====================================================================
-     HERO
-  ==================================================================== */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 160px 48px 80px;
-    position: relative;
-  }
-
-  .hero-eyebrow {
-    display: flex; align-items: center; gap: 16px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 28px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.3s forwards;
-  }
-
-  .hero-eyebrow::before {
-    content: ''; width: 40px; height: 1px; background: var(--accent);
-  }
-
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(64px, 11vw, 150px);
-    line-height: 0.92;
-    letter-spacing: 0.02em;
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.5s forwards;
-  }
-
-  .hero-title .outline {
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-    color: transparent;
-  }
-
-  .hero-title .accent { color: var(--accent); }
-
-  .hero-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 40px;
-    margin-top: 50px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
-    flex-wrap: wrap;
-  }
-
-  .hero-bio {
-    max-width: 460px;
-    color: var(--text-soft);
-    font-size: 15px;
-    line-height: 1.8;
-  }
-
-  .hero-bio strong { color: var(--text); font-weight: 400; }
-
-  .hero-stats {
-    display: flex;
-    gap: 48px;
-  }
-
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 44px;
-    color: var(--text);
-    line-height: 1;
-    display: block;
-    letter-spacing: 0.02em;
-  }
-
-  .stat-num .accent { color: var(--accent); }
-
-  .stat-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-top: 6px;
-    display: block;
-  }
-
-  .scroll-ind {
-    position: absolute;
-    bottom: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    opacity: 0;
-    animation: fadeUp 1s 1.3s forwards;
-    text-transform: uppercase;
-  }
-
-  .scroll-track {
-    width: 1px; height: 60px;
-    background: var(--border);
-    overflow: hidden;
-  }
-
-  .scroll-fill {
-    width: 100%; height: 50%;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    animation: scrollDown 1.8s 1.5s infinite;
-  }
-
-  @keyframes scrollDown {
-    0%   { transform: translateY(-100%); }
-    100% { transform: translateY(200%); }
-  }
-
-  /* ====================================================================
-     CATEGORY HEADER (iGAMING)
-  ==================================================================== */
+  /* ===================== CATEGORY HEADER (iGAMING) ===================== */
   .category {
     padding: 160px 0 40px;
     text-align: center;
     position: relative;
-  }
-
-  .category-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-  }
-
-  .category-label::before, .category-label::after {
-    content: '';
-    width: 60px;
-    height: 1px;
-    background: var(--accent);
-    opacity: 0.5;
   }
 
   .category-title {
@@ -322,17 +158,41 @@
 
   .category-title .accent { color: var(--accent); }
 
+  .category-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    max-width: 540px;
+    margin-inline: auto;
+  }
+
+  .category-label span {
+    flex: 1;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  .category-label em {
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    line-height: 1;
+  }
+
   .category-desc {
     max-width: 620px;
     margin: 0 auto;
     color: var(--text-soft);
-    font-size: 15px;
+    font-size: 20px;
     line-height: 1.7;
   }
 
-  /* ====================================================================
-     SECTION (subsection dentro de iGAMING)
-  ==================================================================== */
+  /* ===================== SECTIONS ===================== */
   section.work-section {
     padding: 60px 0;
     max-width: 86rem;
@@ -372,32 +232,26 @@
 
   .s-title .accent { color: var(--accent); }
 
-  .s-desc {
-    color: var(--text-soft);
-    font-size: 13px;
-    line-height: 1.6;
-    max-width: 380px;
-    text-align: right;
-  }
-
-  /* ====================================================================
-     CARDS BASE
-  ==================================================================== */
+  /* ===================== CARDS BASE ===================== */
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
     overflow: hidden;
     position: relative;
-    transition: border-color 0.4s, transform 0.4s;
+    transition: border-color 0.4s ease,
+                transform 0.5s cubic-bezier(.2, .9, .3, 1.2),
+                box-shadow 0.5s ease;
   }
 
-  .card:hover {
-    border-color: rgba(0, 212, 255, 0.3);
+  .card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
   }
 
   .card-placeholder {
-    background:
-      linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+    background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -408,78 +262,85 @@
     text-transform: uppercase;
     text-align: center;
     padding: 20px;
+    width: 100%;
+    height: 100%;
   }
 
   .card-placeholder::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(45deg, transparent 48%, rgba(0,212,255,.04) 49%, rgba(0,212,255,.04) 51%, transparent 52%);
+    background-image: linear-gradient(45deg, transparent 48%, rgba(0,212,255,.04) 49%, rgba(0,212,255,.04) 51%, transparent 52%);
     background-size: 18px 18px;
     pointer-events: none;
   }
 
-  /* ====================================================================
-     GRID — TRÁFEGO PAGO
-     (criativos quadrados/retangulares mistos, estilo masonry)
-  ==================================================================== */
+  /* ===================== TRÁFEGO (zoom + glow) ===================== */
   .grid-trafego {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 16px;
   }
-
-  .grid-trafego .card {
-    aspect-ratio: 1;
-  }
-
+  .grid-trafego .card { aspect-ratio: 1; }
   .grid-trafego .card.tall { aspect-ratio: 4/5; }
   .grid-trafego .card.wide { aspect-ratio: 16/9; grid-column: span 2; }
 
-  /* ====================================================================
-     GRID — POP-UPS
-  ==================================================================== */
+  .grid-trafego .card:hover {
+    transform: scale(1.04);
+    border-color: rgba(0, 212, 255, 0.35);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+    z-index: 2;
+  }
+
+  /* ===================== POP-UPS (tilt + sombra) ===================== */
   .grid-popups {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
   }
+  .grid-popups .card { aspect-ratio: 4/5; }
 
-  .grid-popups .card {
-    aspect-ratio: 4/5;
+  .grid-popups .card:hover {
+    transform: rotate(-2deg) translateY(-6px);
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow:
+      -10px 20px 40px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(0, 212, 255, 0.1);
+    z-index: 2;
   }
 
-  /* ====================================================================
-     GRID — BANNERS
-     (horizontais — proporção banner web)
-  ==================================================================== */
+  /* ===================== BANNERS (lift + borda ciano) ===================== */
   .grid-banners {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
     gap: 20px;
   }
+  .grid-banners .card { aspect-ratio: 16/7; }
 
-  .grid-banners .card {
-    aspect-ratio: 16/7;
+  .grid-banners .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   }
 
-  /* ====================================================================
-     GRID — WIDGETS
-  ==================================================================== */
+  /* ===================== WIDGETS (lift + glow + scale) ===================== */
   .grid-widgets {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
   }
+  .grid-widgets .card { aspect-ratio: 4/3; }
 
-  .grid-widgets .card {
-    aspect-ratio: 4/3;
+  .grid-widgets .card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: rgba(0, 212, 255, 0.4);
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.45),
+      0 0 50px rgba(0, 212, 255, 0.1);
+    z-index: 2;
   }
 
-  /* ====================================================================
-     GAMIFICAÇÃO — cards 3D
-  ==================================================================== */
+  /* ===================== GAMIFICAÇÃO (3D) ===================== */
   .grid-gamif {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -503,6 +364,15 @@
     will-change: transform;
   }
 
+  .gamif-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 0;
+  }
+
   .gamif-card:hover {
     transform: rotateY(-8deg) rotateX(4deg) translateZ(20px);
     box-shadow:
@@ -515,16 +385,12 @@
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, transparent 50%, rgba(255, 107, 53, 0.04) 100%);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, transparent 50%, rgba(255, 107, 53, 0.04) 100%);
     pointer-events: none;
     z-index: 1;
   }
 
-  .gamif-card .card-placeholder {
-    width: 100%;
-    height: 100%;
-  }
+  .gamif-card .card-placeholder { width: 100%; height: 100%; }
 
   .gamif-card-label {
     position: absolute;
@@ -550,9 +416,7 @@
     line-height: 1;
   }
 
-  /* ====================================================================
-     EMAILS — miniaturas via iframe
-  ==================================================================== */
+  /* ===================== EMAILS (escala 370%/0.2703 mantida) ===================== */
   .grid-emails {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -579,7 +443,6 @@
     background: white;
   }
 
-  /* iframe escalado pra parecer miniatura */
   .email-frame {
     width: 370%;
     height: 370%;
@@ -621,9 +484,7 @@
 
   .email-action:hover { color: var(--accent); }
 
-  /* ====================================================================
-     FERRAMENTAS
-  ==================================================================== */
+  /* ===================== FERRAMENTAS ===================== */
   #ferramentas .grid-tools {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -716,9 +577,7 @@
     transform: translateX(4px);
   }
 
-  /* ====================================================================
-     SOBRE
-  ==================================================================== */
+  /* ===================== SOBRE ===================== */
   #sobre {
     padding: 100px 0;
     max-width: 86rem;
@@ -772,10 +631,7 @@
 
   .skill-row:last-child { border-bottom: none; }
 
-  .skill-cat {
-    color: var(--text);
-    font-weight: 400;
-  }
+  .skill-cat { color: var(--text); font-weight: 400; }
 
   .skill-items {
     color: var(--text-soft);
@@ -783,9 +639,7 @@
     max-width: 60%;
   }
 
-  /* ====================================================================
-     CONTATO
-  ==================================================================== */
+  /* ===================== CONTATO ===================== */
   #contato {
     padding: 120px 2rem;
     text-align: center;
@@ -804,6 +658,7 @@
     pointer-events: none;
     letter-spacing: 0.06em;
     line-height: 1;
+    z-index: 0;
   }
 
   .contact-inner {
@@ -843,7 +698,6 @@
     align-items: center;
     gap: 14px;
     padding: 22px 44px;
-    background: var(--accent);
     color: var(--bg);
     text-decoration: none;
     font-family: var(--font-mono);
@@ -852,16 +706,41 @@
     text-transform: uppercase;
     font-weight: 500;
     border: 1px solid var(--accent);
-    transition: background 0.5s ease, box-shadow 0.5s ease, transform 0.3s ease;
+    background: transparent;
+    transition: color 0.8s ease, box-shadow 0.45s ease, transform 0.3s ease;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
   }
 
+  /* camada de fundo ciano que recolhe no hover */
+  .contact-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform-origin: right center;
+    transform: scaleX(1);
+    transition: transform 0.6s cubic-bezier(.6, .04, .3, 1);
+    z-index: -1;
+  }
+
+  /* texto e seta acima da camada */
+  .contact-cta > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* fix de especificidade pra ganhar do .reveal.on */
+  .contact-cta.reveal.on:hover,
   .contact-cta:hover {
-    background: transparent;
     color: var(--accent);
-    box-shadow: 0 0 40px rgba(0, 212, 255, 0.25);
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
     transform: translateY(-2px);
+  }
+
+  .contact-cta:hover::before {
+    transform: scaleX(0);
   }
 
   .contact-secondary {
@@ -884,9 +763,7 @@
 
   .contact-secondary a:hover { color: var(--accent); }
 
-  /* ====================================================================
-     FOOTER
-  ==================================================================== */
+  /* ===================== FOOTER ===================== */
   footer {
     border-top: 1px solid var(--border);
     padding: 28px 2rem;
@@ -906,9 +783,29 @@
 
   footer .accent { color: var(--accent); }
 
-  /* ====================================================================
-     SCROLL REVEAL
-  ==================================================================== */
+  .back-to-top {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s, border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+    background: transparent;
+    font-size: 14px;
+  }
+
+  .back-to-top:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  /* ===================== SCROLL REVEAL ===================== */
   .reveal {
     opacity: 0;
     transform: translateY(32px);
@@ -920,17 +817,12 @@
     transform: translateY(0);
   }
 
-  /* ====================================================================
-     ANIMATIONS
-  ==================================================================== */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ====================================================================
-     MOBILE
-  ==================================================================== */
+  /* ===================== MOBILE ===================== */
   @media (max-width: 900px) {
     .container { padding-inline: 1.25rem; }
 
@@ -942,26 +834,21 @@
       left: 0; right: 0;
       flex-direction: column;
       gap: 0;
-      background: rgba(8, 10, 15, 0.92);
+      background: rgba(8, 10, 15, 0.97);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-top: 1px solid var(--border);
       padding: 0;
       transform: translateY(-110%);
       transition: transform 0.3s;
+      z-index: 99;
     }
 
     .nav-links.open { transform: translateY(0); }
 
-    .nav-links li {
-      border-bottom: 1px solid var(--border);
-    }
+    .nav-links li { border-bottom: 1px solid var(--border); }
 
-    .nav-links a {
-      display: block;
-      padding: 18px 20px;
-    }
-
+    .nav-links a { display: block; padding: 18px 20px; }
     .nav-links a::after { display: none; }
 
     .nav-mobile-toggle {
@@ -991,7 +878,6 @@
     section.work-section { padding: 40px 24px; }
 
     .s-head { flex-direction: column; align-items: flex-start; }
-    .s-desc { text-align: left; }
 
     #sobre { padding: 60px 24px; }
     .about-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -1010,9 +896,7 @@
 
 <div class="wrap">
 
-  <!-- ==================================================================
-       NAVBAR (glass)
-  ================================================================== -->
+  <!-- ============== NAVBAR (glass) ============== -->
   <header class="site-nav" id="nav">
     <div class="nav-inner container">
       <a class="nav-logo" href="../" aria-label="Voltar para home">
@@ -1034,137 +918,174 @@
     </div>
   </header>
 
-  <!-- ==================================================================
-       CATEGORIA: iGAMING
-  ================================================================== -->
+  <!-- ============== CATEGORIA: iGAMING ============== -->
   <header class="category" id="trabalhos">
-    <div class="category-label">Trabalhos selecionados</div>
+    <div class="category-label">
+      <span></span>
+      <em>/ / /</em>
+      <span></span>
+    </div>
     <h2 class="category-title">iGAMING<span class="accent">.</span></h2>
     <p class="category-desc">
-      Trabalho realizado no setor de CRM de uma casa de apostas esportivas, cobrindo toda a experiência visual do jogador.
+      Design aplicado ao universo de apostas online.
     </p>
   </header>
 
-  <!-- ==================================================================
-       SUBSEÇÃO: TRÁFEGO PAGO
-  ================================================================== -->
+  <!-- ============== TRÁFEGO PAGO ============== -->
   <section class="work-section reveal" id="trafego">
     <div class="s-head">
       <div class="s-head-left">
         <span class="s-num">// 01</span>
         <h3 class="s-title">Tráfego Pago<span class="accent">.</span></h3>
       </div>
-      <p class="s-desc">
-        Criativos para campanhas de aquisição em Meta Ads e Google Ads. Hierarquia visual extrema, copy curta, foco em conversão.
-      </p>
     </div>
 
     <div class="grid-trafego">
-      <!-- ⬇️ SUBSTITUA pelos seus creativos. Mantém aspect-ratio quadrado por padrão. -->
-      <!-- Pra um criativo "tall" (formato story 4:5): adiciona class="tall" -->
-      <!-- Pra um criativo "wide" (formato banner 16:9): adiciona class="wide" -->
-      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
-      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
-      <div class="card tall"><div class="card-placeholder">Story<br>1080x1350</div></div>
-      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
-      <div class="card wide"><div class="card-placeholder">Banner<br>1600x900</div></div>
-      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
-      <div class="card tall"><div class="card-placeholder">Story<br>1080x1350</div></div>
-      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
-      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
-      <div class="card"><div class="card-placeholder">Criativo<br>1080x1080</div></div>
+      <div class="card">
+        <img src="assets/trafego/1.webp" alt="">
+      </div>
+      <div class="card">
+        <img src="assets/trafego/2.webp" alt="">
+      </div>
+      <div class="card">
+        <img src="assets/trafego/3.webp" alt="">
+      </div>
+      <div class="card">
+        <img src="assets/trafego/4.webp" alt="">
+      </div>
+      <div class="card">
+        <img src="assets/trafego/5.webp" alt="">
+      </div>
+      <div class="card">
+        <img src="assets/trafego/6.webp" alt="">
+      </div>
+      <div class="card">
+        <img src="assets/trafego/7.webp" alt="">
+      </div>
+      <div class="card">
+        <img src="assets/trafego/8.webp" alt="">
+      </div>
+      <div class="card">
+        <img src="assets/trafego/9.webp" alt="">
+      </div>
+      <div class="card">
+        <img src="assets/trafego/10.webp" alt="">
+      </div>
+      <div class="card tall">
+        <img src="assets/trafego/11.webp" alt="">
+      </div>
+      <div class="card tall">
+        <img src="assets/trafego/12.webp" alt="">
+      </div>
+      <div class="card tall">
+        <img src="assets/trafego/13.webp" alt="">
+      </div>
+      <div class="card tall">
+        <img src="assets/trafego/14.webp" alt="">
+      </div>
+      <div class="card tall">
+        <img src="assets/trafego/15.webp" alt="">
+      </div>
     </div>
   </section>
 
-  <!-- ==================================================================
-       SUBSEÇÃO: POP-UPS
-  ================================================================== -->
+  <!-- ============== POP-UPS ============== -->
   <section class="work-section reveal" id="popups">
     <div class="s-head">
       <div class="s-head-left">
         <span class="s-num">// 02</span>
         <h3 class="s-title">Pop-ups<span class="accent">.</span></h3>
       </div>
-      <p class="s-desc">
-        Pop-ups de boas-vindas, cadastro, promoções e reativação. Foco em mensagem clara e CTA único.
-      </p>
     </div>
 
     <div class="grid-popups">
-      <!-- ⬇️ Pop-ups geralmente são 4:5 (retrato). Substitua os placeholders. -->
-      <div class="card"><div class="card-placeholder">Pop-up<br>800x1000</div></div>
-      <div class="card"><div class="card-placeholder">Pop-up</div></div>
-      <div class="card"><div class="card-placeholder">Pop-up</div></div>
-      <div class="card"><div class="card-placeholder">Pop-up</div></div>
-      <div class="card"><div class="card-placeholder">Pop-up</div></div>
-      <div class="card"><div class="card-placeholder">Pop-up</div></div>
+      <div class="card">
+        <div class="card-placeholder">Pop-up<br>800x1000</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Pop-up</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Pop-up</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Pop-up</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Pop-up</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Pop-up</div>
+      </div>
     </div>
   </section>
 
-  <!-- ==================================================================
-       SUBSEÇÃO: BANNERS
-  ================================================================== -->
+  <!-- ============== BANNERS ============== -->
   <section class="work-section reveal" id="banners">
     <div class="s-head">
       <div class="s-head-left">
         <span class="s-num">// 03</span>
         <h3 class="s-title">Banners<span class="accent">.</span></h3>
       </div>
-      <p class="s-desc">
-        Banners de carrossel da home, banners promocionais, sazonais e de torneios.
-      </p>
     </div>
 
     <div class="grid-banners">
-      <!-- ⬇️ Proporção 16:7 (formato banner web). Substitua os placeholders. -->
-      <div class="card"><div class="card-placeholder">Banner<br>1920x800</div></div>
-      <div class="card"><div class="card-placeholder">Banner</div></div>
-      <div class="card"><div class="card-placeholder">Banner</div></div>
-      <div class="card"><div class="card-placeholder">Banner</div></div>
-      <div class="card"><div class="card-placeholder">Banner</div></div>
-      <div class="card"><div class="card-placeholder">Banner</div></div>
+      <div class="card">
+        <div class="card-placeholder">Banner<br>1920x800</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Banner</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Banner</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Banner</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Banner</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Banner</div>
+      </div>
     </div>
   </section>
 
-  <!-- ==================================================================
-       SUBSEÇÃO: WIDGETS
-  ================================================================== -->
+  <!-- ============== WIDGETS ============== -->
   <section class="work-section reveal" id="widgets">
     <div class="s-head">
       <div class="s-head-left">
         <span class="s-num">// 04</span>
         <h3 class="s-title">Widgets<span class="accent">.</span></h3>
       </div>
-      <p class="s-desc">
-        Componentes de UI integrados ao site da casa: cards de promoção, múltiplas populares, destaques.
-      </p>
     </div>
 
     <div class="grid-widgets">
-      <!-- ⬇️ Proporção 4:3. Substitua os placeholders. -->
-      <div class="card"><div class="card-placeholder">Widget</div></div>
-      <div class="card"><div class="card-placeholder">Widget</div></div>
-      <div class="card"><div class="card-placeholder">Widget</div></div>
-      <div class="card"><div class="card-placeholder">Widget</div></div>
+      <div class="card">
+        <div class="card-placeholder">Widget</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Widget</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Widget</div>
+      </div>
+      <div class="card">
+        <div class="card-placeholder">Widget</div>
+      </div>
     </div>
   </section>
 
-  <!-- ==================================================================
-       SUBSEÇÃO: GAMIFICAÇÃO (cards 3D)
-  ================================================================== -->
+  <!-- ============== GAMIFICAÇÃO (3D) ============== -->
   <section class="work-section reveal" id="gamificacao">
     <div class="s-head">
       <div class="s-head-left">
         <span class="s-num">// 05</span>
         <h3 class="s-title">Gamificação<span class="accent">.</span></h3>
       </div>
-      <p class="s-desc">
-        Identidade visual de torneios, missões, loja de pontos, roleta, quiz e bolão. 20+ torneios desenhados.
-      </p>
     </div>
 
     <div class="grid-gamif">
-      <!-- ⬇️ Cards 3D pros torneios. Substitua placeholder por imagem do torneio. -->
       <div class="gamif-card">
         <span class="gamif-card-num">01</span>
         <div class="card-placeholder">Torneio</div>
@@ -1198,25 +1119,16 @@
     </div>
   </section>
 
-  <!-- ==================================================================
-       SUBSEÇÃO: EMAIL MARKETING (iframes)
-  ================================================================== -->
+  <!-- ============== EMAIL MARKETING (mantido como você editou) ============== -->
   <section class="work-section reveal" id="emails">
     <div class="s-head">
       <div class="s-head-left">
         <span class="s-num">// 06</span>
         <h3 class="s-title">Email Marketing<span class="accent">.</span></h3>
       </div>
-      <p class="s-desc">
-        Emails em HTML/CSS table-based com compatibilidade cross-client (Gmail, Outlook/VML). Renderizados ao vivo abaixo.
-      </p>
     </div>
 
     <div class="grid-emails">
-
-      <!-- ⬇️ Cada email vai num arquivo HTML em ./emails/email-XX.html
-           Quando você tiver os emails, troca o src dos iframes abaixo
-           e o link "Ver código" pro caminho correto -->
 
       <article class="email-card">
         <div class="email-frame-wrap">
@@ -1265,18 +1177,13 @@
     </div>
   </section>
 
-  <!-- ==================================================================
-       FERRAMENTAS
-  ================================================================== -->
+  <!-- ============== FERRAMENTAS ============== -->
   <section class="work-section reveal" id="ferramentas">
     <div class="s-head">
       <div class="s-head-left">
         <span class="s-num">// 07</span>
         <h3 class="s-title">Ferramentas<span class="accent">.</span></h3>
       </div>
-      <p class="s-desc">
-        Aplicações que construí pra resolver gargalos do meu próprio fluxo de trabalho.
-      </p>
     </div>
 
     <div class="grid-tools">
@@ -1329,9 +1236,7 @@
     </div>
   </section>
 
-  <!-- ==================================================================
-       SOBRE
-  ================================================================== -->
+  <!-- ============== SOBRE ============== -->
   <section id="sobre">
     <div class="s-head reveal">
       <div class="s-head-left">
@@ -1375,19 +1280,17 @@
     </div>
   </section>
 
-  <!-- ==================================================================
-       CONTATO
-  ================================================================== -->
+  <!-- ============== CONTATO ============== -->
   <section id="contato">
     <div class="contact-inner">
-      <div class="contact-eyebrow reveal">// Disponível pra novos projetos</div>
-      <h2 class="contact-title reveal">VAMOS<br>CONVERSAR<span class="accent">.</span></h2>
+      <div class="contact-eyebrow reveal">// Contato</div>
+      <h2 class="contact-title reveal">VAMOS<br>CONVERSAR<span class="accent">?</span></h2>
       <p class="contact-sub reveal">
-        Tem um projeto em mente, vaga aberta ou só quer trocar uma ideia? Manda mensagem.
+        Tem um projeto em mente ou só quer trocar uma ideia? Fale comigo.
       </p>
 
       <a class="contact-cta reveal" href="https://wa.me/5581988780144?text=Oi%20Jo%C3%A3o!" target="_blank" rel="noopener">
-        <span>Chamar no WhatsApp</span>
+        <span>Fale Comigo</span>
         <span>→</span>
       </a>
 
@@ -1399,19 +1302,14 @@
     </div>
   </section>
 
-  <!-- ==================================================================
-       FOOTER
-  ================================================================== -->
+  <!-- ============== FOOTER ============== -->
   <footer>
-    <p>© 2026 João Alberto<span class="accent">.</span></p>
-    <p>Recife, PE</p>
+    <p>© 2026 João Alberto<span class="accent">.</span> Todos os direitos reservados.</p>
+    <a href="#" class="back-to-top" aria-label="Voltar ao topo">↑</a>
   </footer>
 
 </div>
 
-<!-- ==================================================================
-     SCRIPT
-================================================================== -->
 <script>
   // mobile menu toggle
   const toggle = document.getElementById('navToggle');
