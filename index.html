@@ -311,44 +311,43 @@
   }
 
 /* ===================== POP-UP ANIMADO (destaque) ===================== */
-.popup-anim-section {
-  padding: 40px 0 80px;
-}
-
-.popup-anim-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-.popup-anim-label {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  letter-spacing: 0.2em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-
-.popup-anim-frame {
-  width: 360px;
-  height: 470px;
-  position: relative;
-}
-
-.popup-anim-frame iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  background: transparent;
-}
-
-@media (max-width: 480px) {
-  .popup-anim-frame {
-    width: 240px;
-    height: 320px;
+  .work-section.popup-anim-section {
+    padding: 10px 0 60px;
   }
-}
+
+  .popup-anim-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .popup-anim-label {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .popup-anim-frame {
+    width: 440px;
+    height: 560px;
+    position: relative;
+  }
+
+  .popup-anim-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: transparent;
+  }
+
+  @media (max-width: 480px) {
+    .popup-anim-frame {
+      width: 240px;
+      height: 320px;
+    }
+  }
 
   /* ===================== BANNERS (lift + borda ciano) =====================
      Layout masonry: grid de 6 colunas que cria padrão "tijolo".
