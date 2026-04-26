@@ -322,7 +322,7 @@
 
 /* ===================== POP-UP ANIMADO (destaque) ===================== */
   .work-section.popup-anim-section {
-    padding: 10px 0 60px;
+    padding: 20px 0 60px;
   }
 
   .popup-anim-wrap {
@@ -353,9 +353,13 @@
   }
 
   @media (max-width: 480px) {
+    .popup-anim-wrap {
+        gap: 25px;
+    }
+
     .popup-anim-frame {
       width: 240px;
-      height: 320px;
+      height: 350px;
     }
   }
 
@@ -1628,13 +1632,13 @@ updateNav(); // chama uma vez no load (pra caso já entre rolado)
   // scroll reveal via IntersectionObserver
   const reveals = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('on');
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('on');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -50px 0px' });
 
   reveals.forEach(el => obs.observe(el));
 </script>
