@@ -80,11 +80,21 @@
     top: 0; left: 0; right: 0;
     z-index: 1000;
     padding-block: 1.1rem;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    isolation: isolate;
+    transition: background 0.4s ease,
+                backdrop-filter 0.4s ease,
+                border-color 0.4s ease,
+                padding-block 0.3s ease;
+  }
+
+  header.site-nav.scrolled {
     background: rgba(8, 10, 15, 0.55);
     backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    isolation: isolate;
+    
   }
 
   .nav-inner {
@@ -431,6 +441,75 @@
     filter: drop-shadow(0 12px 36px rgba(0, 212, 255, 0.25));
   }
 
+  /* ===================== WIDGET VIVO (destaque ao final dos widgets) ===================== */
+ .work-section .widget-live-section {
+    padding: 60px 0 0;
+  }
+
+  .widget-live-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .widget-live-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .widget-live-num {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+  }
+
+  .widget-live-name {
+    font-family: var(--font-display);
+    font-size: 32px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .widget-live-kind {
+    font-size: 16px;
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .widget-live-desc {
+    font-size: 16px;
+    color: var(--text-soft);
+    line-height: 1.6;
+    max-width: 720px;
+  }
+
+  .widget-live-frame {
+    width: 100%;
+    height: 460px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background: #1B1E1C;
+  }
+
+  .widget-live-frame iframe {
+    width: 100%;
+    height: 460px;
+    border: 0;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .widget-live-frame {
+      height: 420px;
+    }
+  }
+
   /* ===================== GAMIFICAÇÃO (3D) ===================== */
   .grid-gamif {
     display: grid;
@@ -578,7 +657,7 @@
   /* ===================== FERRAMENTAS ===================== */
   #ferramentas .grid-tools {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 24px;
     margin-top: 40px;
   }
@@ -670,7 +749,7 @@
 
   /* ===================== SOBRE ===================== */
   #sobre {
-    padding: 100px 0;
+    padding: 40px 0 100px;
     max-width: 86rem;
     margin: 0 auto;
     padding-inline: 2rem;
@@ -684,7 +763,7 @@
   }
 
   .about-text {
-    font-size: 17px;
+    font-size: 18px;
     line-height: 1.8;
     color: var(--text-soft);
   }
@@ -703,7 +782,7 @@
 
   .about-skills-title {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 18px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--accent);
@@ -722,12 +801,17 @@
 
   .skill-row:last-child { border-bottom: none; }
 
-  .skill-cat { color: var(--text); font-weight: 400; }
+  .skill-cat { 
+    color: var(--text); 
+    font-weight: 400; 
+    font-size: 16px;
+  }
 
   .skill-items {
     color: var(--text-soft);
     text-align: right;
     max-width: 60%;
+    font-size: 14px;
   }
 
   /* ===================== CONTATO ===================== */
@@ -917,9 +1001,11 @@
   @media (max-width: 900px) {
     .container { padding-inline: 1.25rem; }
 
-    header.site-nav {
-      padding-block: 0.875rem;
-      background: rgba(8, 10, 15, 0.95);
+    header.site-nav,
+    header.site-nav.scrolled {
+      padding-block: 0.875rem !important;
+      background: var(--bg) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
     }
 
     .nav-links {
@@ -1034,6 +1120,49 @@
       Design aplicado ao universo de apostas online.
     </p>
   </header>
+
+  <!-- ============== SOBRE ============== -->
+  <section id="sobre">
+    <div class="s-head reveal">
+      <div class="s-head-left">
+        <h3 class="s-title">Sobre<span class="accent">.</span></h3>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <p class="about-text reveal">
+        <strong>Web Designer focado em iGaming</strong>, baseado em Recife. Atuo no setor de CRM, onde desenho toda a experiência visual do jogador — da home do site à gamificação, passando por emails, pop-ups, inbox e banners.
+        <br><br>
+        Conecto design com ações de <span class="hl">retenção, engajamento e ciclo de vida do jogador</span>. Codifico emails em HTML/CSS com compatibilidade cross-client e uso IA generativa aplicada ao nicho de apostas no dia a dia.
+        <br><br>
+        Antes da iGaming, vim de agências de publicidade, onde liderei equipes criativas em projetos de branding, identidade visual e campanhas para clientes de diferentes segmentos.
+      </p>
+
+      <div class="about-skills reveal">
+        <div class="about-skills-title">// Stack &amp; Habilidades</div>
+        <div class="skill-row">
+          <span class="skill-cat">Design</span>
+          <span class="skill-items">Photoshop, Illustrator, Figma</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">iGaming / CRM</span>
+          <span class="skill-items">Smartico, Email Marketing, Gamificação</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Código</span>
+          <span class="skill-items">HTML5, CSS3, JavaScript</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">IA Generativa</span>
+          <span class="skill-items">Composição aplicada a bets</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Liderança</span>
+          <span class="skill-items">Ex-Diretor de Criação</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ============== TRÁFEGO PAGO ============== -->
   <section class="work-section reveal" id="trafego">
@@ -1273,6 +1402,23 @@
         <img src="assets/widgets/9.webp" alt="">
       </div>
     </div>
+
+    <!-- ===== WIDGET VIVO (final da seção widgets) ===== -->
+    <div class="widget-live-section">
+      <div class="widget-live-wrap">
+        <div class="widget-live-head">
+          <span class="widget-live-num">// Widget</span>
+          <h4 class="widget-live-name">SUPERMÚLTIPLA</h4>
+          <span class="widget-live-kind">Carrossel de múltiplas populares</span>
+        </div>
+        <p class="widget-live-desc">
+          Componente de UI desenvolvido em HTML/CSS/JS puro. Carrossel horizontal com cards de jogos, odds boostadas e CTA pra ativação da SuperMúltipla. Integrado ao site da casa.
+        </p>
+        <div class="widget-live-frame">
+          <iframe src="./widget-supermultipla/index.html" loading="lazy" title="Widget SuperMúltipla"></iframe>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ============== GAMIFICAÇÃO (3D) ============== -->
@@ -1417,65 +1563,6 @@
         </div>
       </a>
 
-      <a class="tool-card" href="https://github.com/joaoa21" target="_blank" rel="noopener">
-        <span class="tool-num">// 03</span>
-        <div>
-          <h4 class="tool-name">WIDGET MÚLTIPLAS</h4>
-          <span class="tool-kind">Componente de parlay para casa de apostas</span>
-        </div>
-        <p class="tool-desc">
-          Widget de múltiplas (parlay) integrado ao site, com cards de jogos, deep links e styling alinhado à identidade da marca.
-        </p>
-        <div class="tool-foot">
-          <span class="tool-stack">HTML · CSS · JS</span>
-          <span class="tool-arrow">→</span>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ============== SOBRE ============== -->
-  <section id="sobre">
-    <div class="s-head reveal">
-      <div class="s-head-left">
-        <span class="s-num">// 08</span>
-        <h3 class="s-title">Sobre<span class="accent">.</span></h3>
-      </div>
-    </div>
-
-    <div class="about-grid">
-      <p class="about-text reveal">
-        <strong>Web Designer focado em iGaming</strong>, baseado em Recife. Atuo no setor de CRM, onde desenho toda a experiência visual do jogador — da home do site à gamificação, passando por emails, pop-ups, inbox e banners.
-        <br><br>
-        Conecto design com ações de <span class="hl">retenção, engajamento e ciclo de vida do jogador</span>. Codifico emails em HTML/CSS com compatibilidade cross-client e uso IA generativa aplicada ao nicho de apostas no dia a dia.
-        <br><br>
-        Antes da iGaming, vim de agências de publicidade, onde liderei equipes criativas em projetos de branding, identidade visual e campanhas para clientes de diferentes segmentos.
-      </p>
-
-      <div class="about-skills reveal">
-        <div class="about-skills-title">// Stack &amp; Habilidades</div>
-        <div class="skill-row">
-          <span class="skill-cat">Design</span>
-          <span class="skill-items">Photoshop, Illustrator, Figma</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-cat">iGaming / CRM</span>
-          <span class="skill-items">Smartico, Email Marketing, Gamificação</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-cat">Código</span>
-          <span class="skill-items">HTML5, CSS3, JavaScript</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-cat">IA Generativa</span>
-          <span class="skill-items">Composição aplicada a bets</span>
-        </div>
-        <div class="skill-row">
-          <span class="skill-cat">Liderança</span>
-          <span class="skill-items">Ex-Diretor de Criação</span>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1510,6 +1597,20 @@
 </div>
 
 <script>
+  // scroll-aware navbar (vira glass quando rola)
+  const siteNav = document.getElementById('nav');
+
+  function updateNav() {
+    if (window.scrollY > 40) {
+      siteNav.classList.add('scrolled');
+    } else {
+      siteNav.classList.remove('scrolled');
+    }
+  }
+
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav(); // chama uma vez no load (pra caso já entre rolado)
+
   // mobile menu toggle
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
