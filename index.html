@@ -310,6 +310,46 @@
     z-index: 2;
   }
 
+/* ===================== POP-UP ANIMADO (destaque) ===================== */
+.popup-anim-section {
+  padding: 40px 0 80px;
+}
+
+.popup-anim-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.popup-anim-label {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.popup-anim-frame {
+  width: 360px;
+  height: 470px;
+  position: relative;
+}
+
+.popup-anim-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+}
+
+@media (max-width: 480px) {
+  .popup-anim-frame {
+    width: 240px;
+    height: 320px;
+  }
+}
+
   /* ===================== BANNERS (lift + borda ciano) =====================
      Layout masonry: grid de 6 colunas que cria padrão "tijolo".
      - .banner.short  (1266×600  ≈ 2.11:1)  → ocupa 2 colunas (de 6)
@@ -1099,6 +1139,16 @@
       </div>
       <div class="card">
         <img src="assets/pop-up/12.webp" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== POP-UP ANIMADO (destaque ao final dos pop-ups) ============== -->
+  <section class="work-section popup-anim-section reveal">
+    <div class="popup-anim-wrap">
+      <span class="popup-anim-label">// Pop-up animado</span>
+      <div class="popup-anim-frame">
+        <iframe src="./pop-up-animado/index.html" loading="lazy" title="Pop-up animado"></iframe>
       </div>
     </div>
   </section>
