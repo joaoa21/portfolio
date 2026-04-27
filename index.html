@@ -515,7 +515,7 @@
   /* ===================== GAMIFICAÇÃO (3D) ===================== */
   .grid-gamif {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 32px;
     padding: 20px 0;
     perspective: 1200px;
@@ -543,6 +543,12 @@
   display: block;
   position: relative;
   z-index: 0;
+  padding: 1rem 1rem 3rem;
+
+  &.small {
+      transform: scale(0.75);
+      padding: 1rem 1rem 2rem;
+    }
   }
 
   .gamif-card:hover {
@@ -586,6 +592,60 @@
     color: var(--accent);
     letter-spacing: 0.04em;
     line-height: 1;
+  }
+
+  /* ===================== GAMIFICAÇÃO — Banners promocionais (extras) ===================== */
+  .grid-gamif-banners {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .gamif-banner {
+    height: 200px;
+    flex: 0 1 auto;
+    background: linear-gradient(135deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(.2, .9, .3, 1.2),
+                box-shadow 0.5s ease,
+                border-color 0.4s;
+    cursor: pointer;
+  }
+
+  .gamif-banner img {
+    height: 100%;
+    width: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .gamif-banner:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 212, 255, 0.4);
+    box-shadow:
+      0 12px 32px rgba(0, 0, 0, 0.45),
+      0 0 50px rgba(0, 212, 255, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .grid-gamif-banners {
+      flex-direction: column;
+      align-items: center;
+    }
+    .gamif-banner {
+      height: auto;
+      width: 100%;
+      max-width: 500px;
+    }
+    .gamif-banner img {
+      width: 100%;
+      height: auto;
+    }
   }
 
   /* ===================== EMAILS (escala 370%/0.2703 mantida) ===================== */
@@ -659,8 +719,9 @@
   /* ===================== FERRAMENTAS ===================== */
   #ferramentas .grid-tools {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 450px));
+    justify-content: center;
+    gap: 35px;
     margin-top: 40px;
   }
 
@@ -997,6 +1058,10 @@
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .disabled {
+    display: none;
   }
 
   /* ===================== MOBILE ===================== */
@@ -1406,7 +1471,7 @@
     </div>
 
     <!-- ===== WIDGET VIVO (final da seção widgets) ===== -->
-    <div class="widget-live-section">
+    <div class="widget-live-section disabled">
       <div class="widget-live-wrap">
         <div class="widget-live-head">
           <span class="widget-live-num">// Widget</span>
@@ -1435,33 +1500,144 @@
     <div class="grid-gamif reveal">
       <div class="gamif-card">
         <span class="gamif-card-num">01</span>
-        <div class="card-placeholder">Torneio</div>
-        <span class="gamif-card-label">Torneio · Nome</span>
+        <img src="assets/game/1.webp" alt="">
+        <span class="gamif-card-label">Missão · Aviator</span>
       </div>
       <div class="gamif-card">
         <span class="gamif-card-num">02</span>
-        <div class="card-placeholder">Torneio</div>
-        <span class="gamif-card-label">Torneio · Nome</span>
+        <img src="assets/game/2.webp" alt="">
+        <span class="gamif-card-label">Missão · Aviator</span>
       </div>
       <div class="gamif-card">
         <span class="gamif-card-num">03</span>
-        <div class="card-placeholder">Torneio</div>
-        <span class="gamif-card-label">Torneio · Nome</span>
+        <img src="assets/game/3.webp" alt="">
+        <span class="gamif-card-label">Missão · Aviator</span>
       </div>
       <div class="gamif-card">
         <span class="gamif-card-num">04</span>
-        <div class="card-placeholder">Torneio</div>
-        <span class="gamif-card-label">Torneio · Nome</span>
+        <img src="assets/game/4.webp" alt="">
+        <span class="gamif-card-label">Missão · Aviator</span>
       </div>
       <div class="gamif-card">
         <span class="gamif-card-num">05</span>
-        <div class="card-placeholder">Torneio</div>
-        <span class="gamif-card-label">Torneio · Nome</span>
+        <img src="assets/game/5.webp" alt="">
+        <span class="gamif-card-label">Missão · Aviator</span>
       </div>
       <div class="gamif-card">
         <span class="gamif-card-num">06</span>
-        <div class="card-placeholder">Torneio</div>
-        <span class="gamif-card-label">Torneio · Nome</span>
+        <img src="assets/game/6.webp" alt="">
+        <span class="gamif-card-label">Missão · Roleta</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">07</span>
+        <img src="assets/game/7.webp" alt="">
+        <span class="gamif-card-label">Missão · Roleta</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">08</span>
+        <img src="assets/game/8.webp" alt="">
+        <span class="gamif-card-label">Missão · Roleta</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">09</span>
+        <img src="assets/game/9.webp" alt="">
+        <span class="gamif-card-label">Missão · Roleta</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">10</span>
+        <img src="assets/game/10.webp" alt="">
+        <span class="gamif-card-label">Missão · Roleta</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">11</span>
+        <img src="assets/game/11.webp" alt="">
+        <span class="gamif-card-label">Missão · Hacksaw</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">12</span>
+        <img src="assets/game/12.webp" alt="">
+        <span class="gamif-card-label">Missão · Hacksaw</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">13</span>
+        <img src="assets/game/13.webp" alt="">
+        <span class="gamif-card-label">Missão · Hacksaw</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">14</span>
+        <img src="assets/game/14.webp" alt="">
+        <span class="gamif-card-label">Missão · Hacksaw</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">15</span>
+        <img src="assets/game/15.webp" alt="">
+        <span class="gamif-card-label">Missão · Hacksaw</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">16</span>
+        <img src="assets/game/16.webp" alt="">
+        <span class="gamif-card-label">Missão · Cassino</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">17</span>
+        <img src="assets/game/17.webp" alt="">
+        <span class="gamif-card-label">Missão · NBA</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">18</span>
+        <img src="assets/game/18.webp" alt="">
+        <span class="gamif-card-label">Missão · Cassino</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">19</span>
+        <img src="assets/game/19.webp" alt="">
+        <span class="gamif-card-label">Missão · Natal Fortunes</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">20</span>
+        <img src="assets/game/20.webp" alt="">
+        <span class="gamif-card-label">Missão · Spaceman</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">21</span>
+        <img class="small" src="assets/game/21.webp" alt="">
+        <span class="gamif-card-label">Loja · Pacote de giros</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">22</span>
+        <img class="small" src="assets/game/22.webp" alt="">
+        <span class="gamif-card-label">Loja · Pacote de giros</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">23</span>
+        <img class="small" src="assets/game/23.webp" alt="">
+        <span class="gamif-card-label">Loja · Pacote de giros</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">24</span>
+        <img class="small" src="assets/game/24.webp" alt="">
+        <span class="gamif-card-label">Loja · Pacote de giros</span>
+      </div>
+      <div class="gamif-card">
+        <span class="gamif-card-num">25</span>
+        <img class="small" src="assets/game/25.webp" alt="">
+        <span class="gamif-card-label">Loja · Pacote de giros</span>
+      </div>
+    </div>
+
+    <!-- ===== Banners promocionais (extras) ===== -->
+    <div class="grid-gamif-banners">
+      <div class="gamif-banner">
+        <img src="assets/game/26.webp" alt="">
+      </div>
+      <div class="gamif-banner">
+        <img src="assets/game/27.webp" alt="">
+      </div>
+      <div class="gamif-banner">
+        <img src="assets/game/28.webp" alt="">
+      </div>
+      <div class="gamif-banner">
+        <img src="assets/game/29.webp" alt="">
       </div>
     </div>
   </section>
@@ -1535,7 +1711,7 @@
 
     <div class="grid-tools reveal">
 
-      <a class="tool-card" href="https://github.com/joaoa21" target="_blank" rel="noopener">
+      <a class="tool-card" href="https://kompres.com.br/" target="_blank" rel="noopener">
         <span class="tool-num">// 01</span>
         <div>
           <h4 class="tool-name">KOMPRES</h4>
@@ -1550,7 +1726,7 @@
         </div>
       </a>
 
-      <a class="tool-card" href="https://github.com/joaoa21" target="_blank" rel="noopener">
+      <a class="tool-card" href="https://joaoa21.github.io/email-generator/" target="_blank" rel="noopener">
         <span class="tool-num">// 02</span>
         <div>
           <h4 class="tool-name">EMAIL GENERATOR</h4>
