@@ -311,6 +311,7 @@
     height: 100%;
     border: 0;
     background: transparent;
+    pointer-events: none;
   }
 
   @media (max-width: 480px) {
