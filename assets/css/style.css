@@ -1067,6 +1067,21 @@
     footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
   }
 
+@media (max-width: 600px) {
+  .back-to-top {
+    width: 42px;
+    height: 42px;
+    margin: 18px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer {
+    padding-bottom: 28px;
+  }
+}
+
 @media (max-width: 360px) {
   .grid-trafego,
   .grid-popups,
